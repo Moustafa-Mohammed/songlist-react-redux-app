@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { selectSong } from "../actions";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -16,7 +17,9 @@ function SongList(props) {
           mt={2}
         >
           <div>{song.title}</div>
-          <Button variant="contained">Select</Button>
+          <Button onClick={() => props.selectSong(song)} variant="contained">
+            Select
+          </Button>
         </Stack>
       );
     });
@@ -28,4 +31,4 @@ const mapStateToProps = (state) => {
   return { songs: state.songs };
 };
 
-export default connect(mapStateToProps)(SongList);
+export default connect(mapStateToProps, { selectSong })(SongList);
